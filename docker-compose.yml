@@ -1,0 +1,24 @@
+services:
+  spark:
+    image: spark:python3
+    container_name: ecommerce-spark
+    user: root
+    ports:
+      - "4040:4040"
+      - "7077:7077"
+      - "8080:8080"
+    volumes:
+      - .:/opt/spark/work
+      - ./data:/opt/spark/work/data
+    environment:
+      - PYSPARK_PYTHON=python3
+      - PYSPARK_DRIVER_PYTHON=python3
+    command: tail -f /dev/null
+    tty: true
+    stdin_open: true
+    **entrypoint: >
+      sh -c "
+        apt-get update && apt-get install -y python3-pip &&
+        pip3 install pyspark==3.5.3 python-dotenv &&
+        tail -f /dev/null
+      "**
