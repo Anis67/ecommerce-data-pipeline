@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: ecommerce_raw
+    database: ecommerce-pipeline-dev
+    schema: ecommerce_raw
+    tables:
+      - name: orders
+        description: "Commandes brutes chargées depuis GCS"
